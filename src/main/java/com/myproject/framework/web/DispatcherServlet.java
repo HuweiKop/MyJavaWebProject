@@ -62,7 +62,7 @@ public class DispatcherServlet {
             for (ControllerHandlerMapping controller :
                     this.controllerHandlerMappings) {
                 if (controller.isMatch(request.getUrl())) {
-                    Object result = controller.execute(request.getUrl());
+                    Object result = controller.execute(request);
                     response.setResult(result);
                 }
             }
@@ -71,6 +71,8 @@ public class DispatcherServlet {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e){
             e.printStackTrace();
         }
     }

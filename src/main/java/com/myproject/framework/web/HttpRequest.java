@@ -12,6 +12,7 @@ public class HttpRequest {
     private String httpMethod;
     private String url;
     private String protocol;
+    private Map<String, Object> parameters = new HashMap<>();
 
     public HttpRequest(String request){
         String[] arrStr = request.split("\n");
@@ -25,11 +26,22 @@ public class HttpRequest {
         this.httpMethod = first.substring(0,first.indexOf(" /"));
         this.url = first.substring(first.indexOf(" /")+1,first.lastIndexOf(" "));
         this.protocol = first.substring(first.lastIndexOf(" ")+1);
+
+        String[] paraArr = this.url.split("\\?");
+        if(paraArr.length>1){
+            this.url = paraArr[0];
+            String[] paras = paraArr[1].split("&");
+            for(int i=0;i<paras.length;i++){
+                String[] p = paras[i].split("=");
+                if(p.length==2){
+                    this.parameters.put(p[0],p[1]);
+                }
+            }
+        }
+
         System.out.println(httpMethod);
         System.out.println(url);
         System.out.println(this.protocol);
-
-        headMap.values().forEach(System.out::println);
     }
 
     public Map<String, String> getHeadMap() {
@@ -46,5 +58,9 @@ public class HttpRequest {
 
     public String getProtocol() {
         return protocol;
+    }
+
+    public Map<String, Object> getParameters() {
+        return parameters;
     }
 }
