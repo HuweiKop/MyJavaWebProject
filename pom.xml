@@ -5,7 +5,10 @@
   <groupId>com.myproject</groupId>
   <artifactId>java-web</artifactId>
   <version>1.0.0</version>
-  <packaging>jar</packaging>
+  <modules>
+    <module>spring-mvc</module>
+  </modules>
+  <packaging>pom</packaging>
 
   <name>java-web</name>
   <url>http://maven.apache.org</url>
@@ -20,6 +23,11 @@
       <artifactId>junit</artifactId>
       <version>3.8.2</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.0-b01</version>
     </dependency>
   </dependencies>
 </project>
