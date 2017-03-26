@@ -20,6 +20,8 @@
   <modules>
     <module>spring-mvc</module>
       <module>my-rpc</module>
+    <module>mybatis</module>
+    <module>dbconnectionpool</module>
   </modules>
   <packaging>pom</packaging>
 

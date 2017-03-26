@@ -6,13 +6,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="dbconnectionpool" />
         <module name="my-rpc" />
+        <module name="mybatis" />
         <module name="spring-mvc" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="dbconnectionpool" target="1.8" />
       <module name="java-web" target="1.8" />
       <module name="my-rpc" target="1.8" />
+      <module name="mybatis" target="1.8" />
       <module name="MyJavaWebProject" target="1.8" />
       <module name="rpc" target="1.8" />
       <module name="spring-mvc" target="1.8" />

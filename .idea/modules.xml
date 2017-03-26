@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyJavaWebProject.iml" filepath="$PROJECT_DIR$/MyJavaWebProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dbconnectionpool/dbconnectionpool.iml" filepath="$PROJECT_DIR$/dbconnectionpool/dbconnectionpool.iml" />
       <module fileurl="file://$PROJECT_DIR$/my-rpc/my-rpc.iml" filepath="$PROJECT_DIR$/my-rpc/my-rpc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatis/mybatis.iml" filepath="$PROJECT_DIR$/mybatis/mybatis.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-mvc/spring-mvc.iml" filepath="$PROJECT_DIR$/spring-mvc/spring-mvc.iml" />
     </modules>
   </component>
