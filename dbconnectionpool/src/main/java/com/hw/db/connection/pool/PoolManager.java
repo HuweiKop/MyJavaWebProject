@@ -5,7 +5,7 @@ package com.hw.db.connection.pool;
  */
 public class PoolManager {
 
-    public MyPool getPool(){
+    public static MyPool getPool(){
         return PoolCreator.pool;
     }
 

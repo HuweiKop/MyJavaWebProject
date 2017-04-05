@@ -22,6 +22,7 @@
       <module>my-rpc</module>
     <module>mybatis</module>
     <module>dbconnectionpool</module>
+      <module>my-mybatis</module>
   </modules>
   <packaging>pom</packaging>
 

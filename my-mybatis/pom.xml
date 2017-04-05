@@ -7,10 +7,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>db-connection-pool</artifactId>
+    <artifactId>my-mybatis</artifactId>
     <packaging>jar</packaging>
 
-    <name>db-connection-pool</name>
+    <name>my-mybatis</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -29,6 +29,11 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.30</version>
+        </dependency>
+        <dependency>
+            <groupId>com.myproject</groupId>
+            <artifactId>db-connection-pool</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 </project>

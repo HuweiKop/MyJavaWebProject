@@ -42,13 +42,13 @@ public class MyPool {
         }
     }
 
-    public MyConnection getConnection(){
+    public Connection getConnection(){
         MyConnection connection = getRealConnection();
         while (connection==null){
             createConnection(this.addCount);
             connection = getRealConnection();
         }
-        return connection;
+        return connection.getConnection();
     }
 
     public synchronized MyConnection getRealConnection() {
