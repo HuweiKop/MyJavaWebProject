@@ -23,6 +23,8 @@
     <module>mybatis</module>
     <module>dbconnectionpool</module>
       <module>my-mybatis</module>
+      <module>mutil-datasource</module>
+    <module>springboot</module>
   </modules>
   <packaging>pom</packaging>
 
