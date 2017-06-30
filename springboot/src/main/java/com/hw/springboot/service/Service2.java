@@ -5,6 +5,8 @@ import com.hw.springboot.dao.IUserDao;
 import com.hw.springboot.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -17,7 +19,7 @@ public class Service2 {
     @Autowired
     private IUserDao userDao;
 
-    @Transactional
+    @Transactional()
     public User getUser(int id){
         User user = userDao.getUser(id);
         System.out.println("service2======="+user.getUsername());

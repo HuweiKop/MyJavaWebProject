@@ -1,5 +1,8 @@
 import com.hw.springboot.Application;
 import com.hw.springboot.DynamicDataSourceContextHolder;
+import com.hw.springboot.api.UserApi;
+import com.hw.springboot.dao.IUserDao;
+import com.hw.springboot.model.User;
 import com.hw.springboot.service.Service1;
 import com.hw.springboot.service.Service2;
 import com.hw.springboot.service.Service3;
@@ -16,19 +19,24 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @SpringApplicationConfiguration(classes = Application.class) // 指定我们SpringBoot工程的Application启动类
 public class AppTest {
 
-    @Autowired
-    Service1 service1;
-    @Autowired
-    Service2 service2;
-    @Autowired
-    Service3 service3;
+        @Autowired
+        Service1 service1;
+        @Autowired
+        Service2 service2;
+        @Autowired
+        Service3 service3;
+        @Autowired
+        IUserDao userDao;
+        @Autowired
+        UserApi userApi;
 
     @Test
     public  void test(){
 
+//        service1.getUser(11);
+//        service2.getUser(11);
+//        service3.getUser(11);
         service1.getUser(11);
-        service2.getUser(11);
-        service3.getUser(11);
 //        DynamicDataSourceContextHolder.setDataSourceType("testDataSource2");
     }
 }
