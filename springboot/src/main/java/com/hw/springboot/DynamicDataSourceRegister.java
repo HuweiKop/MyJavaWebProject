@@ -33,16 +33,22 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
     @Override
     public void setEnvironment(Environment environment) {
         // 读取主数据源
-        RelaxedPropertyResolver propertyResolver = new RelaxedPropertyResolver(environment, "spring.datasource.test1.");
+        RelaxedPropertyResolver propertyResolver = new RelaxedPropertyResolver(environment, "spring.datasource.test.");
 
         defaultDataSource = buildDataSource(propertyResolver);
         dataBinder(defaultDataSource,environment);
 
+        RelaxedPropertyResolver propertyResolver1 = new RelaxedPropertyResolver(environment, "spring.datasource.test1.");
+
+        DataSource d1 = buildDataSource(propertyResolver1);
+        customDataSources.put("testDataSource1",d1);
+        dataBinder(d1,environment);
+
         RelaxedPropertyResolver propertyResolver2 = new RelaxedPropertyResolver(environment, "spring.datasource.test2.");
 
-        DataSource d = buildDataSource(propertyResolver2);
-        customDataSources.put("testDataSource2",d);
-        dataBinder(d,environment);
+        DataSource d2 = buildDataSource(propertyResolver2);
+        customDataSources.put("testDataSource2",d2);
+        dataBinder(d2,environment);
     }
 
     @Override

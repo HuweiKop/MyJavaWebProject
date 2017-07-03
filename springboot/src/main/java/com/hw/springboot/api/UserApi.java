@@ -2,6 +2,7 @@ package com.hw.springboot.api;
 
 import com.hw.springboot.dao.IUserDao;
 import com.hw.springboot.model.User;
+import com.hw.springboot.service.MasterService;
 import com.hw.springboot.service.Service1;
 import com.hw.springboot.service.Service2;
 import com.hw.springboot.service.Service3;
@@ -22,13 +23,13 @@ public class UserApi {
     @Autowired
     Service3 service3;
     @Autowired
+    MasterService masterService;
+    @Autowired
     IUserDao userDao;
 
     public void getUser(int id){
-        service1.getUser(id);
-        service2.getUser(11);
-        service3.getUser(11);
-        User user = userDao.getUser(11);
-        System.out.println(user.getUsername());
+//        masterService.insertUser("master service");
+        service2.getUser(id);
+        service3.getUser(id);
     }
 }

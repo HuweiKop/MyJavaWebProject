@@ -1,5 +1,6 @@
 package com.hw.springboot.service;
 
+import com.hw.springboot.DataSourceTypeConst;
 import com.hw.springboot.TargetDataSource;
 import com.hw.springboot.dao.IUserDao;
 import com.hw.springboot.model.User;
@@ -13,13 +14,13 @@ import org.springframework.transaction.annotation.Transactional;
  * Created by huwei on 2017/6/28.
  */
 @Service("service2")
-@TargetDataSource("testDataSource2")
+@TargetDataSource(value = "testDataSource1",type = DataSourceTypeConst.SlaverDataSource)
 public class Service2 {
 
     @Autowired
     private IUserDao userDao;
 
-    @Transactional()
+    @Transactional(propagation=Propagation.NOT_SUPPORTED)
     public User getUser(int id){
         User user = userDao.getUser(id);
         System.out.println("service2======="+user.getUsername());

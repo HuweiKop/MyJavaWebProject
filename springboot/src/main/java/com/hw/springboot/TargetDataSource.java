@@ -10,4 +10,6 @@ import java.lang.annotation.*;
 @Documented
 public @interface TargetDataSource {
     String value() default "defaultDataSource";
+
+    int type() default DataSourceTypeConst.MasterDataSource;
 }
