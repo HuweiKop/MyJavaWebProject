@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * Created by huwei on 2017/7/3.
  */
-public class DataSourceMap {
+public class SlaverDataSourceMap {
 
     private static String[] dataSources = new String[]{"testDataSource1","testDataSource2"};
     private static Random random = new Random(2);

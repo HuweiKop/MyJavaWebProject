@@ -25,6 +25,7 @@
       <module>my-mybatis</module>
       <module>mutil-datasource</module>
     <module>springboot</module>
+      <module>sharding-jdbc</module>
   </modules>
   <packaging>pom</packaging>
 

@@ -27,7 +27,7 @@ public class UserApi {
     @Autowired
     IUserDao userDao;
 
-    public void getUser(int id){
+    public void     getUser(int id){
 //        masterService.insertUser("master service");
         service2.getUser(id);
         service3.getUser(id);

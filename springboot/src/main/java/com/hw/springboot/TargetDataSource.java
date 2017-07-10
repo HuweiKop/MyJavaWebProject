@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface TargetDataSource {
-    String value() default "defaultDataSource";
+    String value() default DataSourceKeyConst.defaultDataSource;
 
     int type() default DataSourceTypeConst.MasterDataSource;
 }

@@ -16,7 +16,6 @@ public class MasterService {
     @Autowired
     private IUserDao userDao;
 
-    @TargetDataSource
     @Transactional
     public User insertUser(String username){
         User user = new User();
@@ -27,5 +26,14 @@ public class MasterService {
         System.out.println(newUser.getId());
         System.out.println(newUser.getUsername());
         return newUser;
+    }
+
+//    @Transactional
+    public User getUser(int id){
+        User user = userDao.getUser(id);
+        System.out.println("service master======="+user.getUsername());
+        User user2 = userDao.getUser(id);
+        System.out.println("service master======="+user2.getUsername());
+        return user;
     }
 }

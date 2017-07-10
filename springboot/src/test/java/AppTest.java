@@ -3,6 +3,7 @@ import com.hw.springboot.DynamicDataSourceContextHolder;
 import com.hw.springboot.api.UserApi;
 import com.hw.springboot.dao.IUserDao;
 import com.hw.springboot.model.User;
+import com.hw.springboot.service.MasterService;
 import com.hw.springboot.service.Service1;
 import com.hw.springboot.service.Service2;
 import com.hw.springboot.service.Service3;
@@ -30,13 +31,17 @@ public class AppTest {
         @Autowired
         UserApi userApi;
 
+        @Autowired
+    MasterService masterService;
+
     @Test
     public  void test(){
 
 //        service1.getUser(11);
 //        service2.getUser(11);
 //        service3.getUser(11);
-        userApi.getUser(11);
+        masterService.getUser(1);
+        masterService.getUser(1);
 //        DynamicDataSourceContextHolder.setDataSourceType("testDataSource2");
     }
 }

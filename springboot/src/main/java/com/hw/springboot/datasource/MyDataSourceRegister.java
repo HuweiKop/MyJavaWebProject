@@ -1,5 +1,8 @@
-package com.hw.springboot;
+package com.hw.springboot.datasource;
 
+import com.hw.springboot.DataSourceKeyConst;
+import com.hw.springboot.DynamicDataSource;
+import com.hw.springboot.DynamicDataSourceContextHolder;
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.PropertyValues;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -14,62 +17,55 @@ import org.springframework.core.convert.support.DefaultConversionService;
 import org.springframework.core.env.Environment;
 import org.springframework.core.type.AnnotationMetadata;
 
-import javax.sql.*;
+import javax.sql.DataSource;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
- * Created by huwei on 2017/6/29.
+ * Created by huwei on 2017/7/6.
  */
-public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar, EnvironmentAware {
+public class MyDataSourceRegister implements ImportBeanDefinitionRegistrar, EnvironmentAware {
 
-    // 数据源
-    private DataSource defaultDataSource;
-    private Map<String, DataSource> customDataSources = new HashMap<>();
+    private DataSource masterDataSource;
+    private List<DataSource> slaveDataSources = new ArrayList<>();
 
     private ConversionService conversionService = new DefaultConversionService();
     private PropertyValues dataSourcePropertyValues;
 
     @Override
     public void setEnvironment(Environment environment) {
+
         // 读取主数据源
         RelaxedPropertyResolver propertyResolver = new RelaxedPropertyResolver(environment, "spring.datasource.test.");
 
-        defaultDataSource = buildDataSource(propertyResolver);
-        dataBinder(defaultDataSource,environment);
+        masterDataSource = buildDataSource(propertyResolver);
+        dataBinder(masterDataSource,environment);
 
         RelaxedPropertyResolver propertyResolver1 = new RelaxedPropertyResolver(environment, "spring.datasource.test1.");
 
         DataSource d1 = buildDataSource(propertyResolver1);
-        customDataSources.put("testDataSource1",d1);
+        slaveDataSources.add(d1);
         dataBinder(d1,environment);
 
         RelaxedPropertyResolver propertyResolver2 = new RelaxedPropertyResolver(environment, "spring.datasource.test2.");
 
         DataSource d2 = buildDataSource(propertyResolver2);
-        customDataSources.put("testDataSource2",d2);
+        slaveDataSources.add(d2);
         dataBinder(d2,environment);
     }
 
     @Override
     public void registerBeanDefinitions(AnnotationMetadata annotationMetadata, BeanDefinitionRegistry beanDefinitionRegistry) {
-        Map<Object, Object> targetDataSources = new HashMap<Object, Object>();
-        // 将主数据源添加到更多数据源中
-        targetDataSources.put(DataSourceKeyConst.defaultDataSource, defaultDataSource);
-        DynamicDataSourceContextHolder.dataSourceIds.add(DataSourceKeyConst.defaultDataSource);
-        // 添加更多数据源
-        targetDataSources.putAll(customDataSources);
-        for (String key : customDataSources.keySet()) {
-            DynamicDataSourceContextHolder.dataSourceIds.add(key);
-        }
 
         // 创建DynamicDataSource
         GenericBeanDefinition beanDefinition = new GenericBeanDefinition();
-        beanDefinition.setBeanClass(DynamicDataSource.class);
+        beanDefinition.setBeanClass(MyMasterSlaveDataSource.class);
         beanDefinition.setSynthetic(true);
         MutablePropertyValues mpv = beanDefinition.getPropertyValues();
-        mpv.addPropertyValue("defaultTargetDataSource", defaultDataSource);
-        mpv.addPropertyValue("targetDataSources", targetDataSources);
+        mpv.addPropertyValue("masterDataSource", masterDataSource);
+        mpv.addPropertyValue("slaveDataSources", slaveDataSources);
         beanDefinitionRegistry.registerBeanDefinition("dataSource", beanDefinition);
     }
     /**

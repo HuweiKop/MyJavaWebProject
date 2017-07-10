@@ -20,7 +20,7 @@ public class Service2 {
     @Autowired
     private IUserDao userDao;
 
-    @Transactional(propagation=Propagation.NOT_SUPPORTED)
+//    @Transactional(propagation=Propagation.NOT_SUPPORTED)
     public User getUser(int id){
         User user = userDao.getUser(id);
         System.out.println("service2======="+user.getUsername());

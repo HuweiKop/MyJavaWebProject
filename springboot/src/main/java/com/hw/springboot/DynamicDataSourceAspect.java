@@ -1,7 +1,6 @@
 package com.hw.springboot;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -16,8 +15,15 @@ import java.lang.reflect.Method;
  */
 @Aspect
 @Order(-1)// 保证该AOP在@Transactional之前执行
-@Component
+//@Component
 public class DynamicDataSourceAspect {
+    /**
+     * 通过注解方式在service层 实现数据源切换。
+     * 需要针对需要切换数据源的service 类 配置相对应注解
+     * 可以通过配置事务传播性，在事务中强制切换数据源
+     * @param point
+     * @throws Throwable
+     */
     @Before("execution(* com.hw.springboot.service..*.*(..))")
     public void changeDataSource(JoinPoint point) throws Throwable {
         TargetDataSource ds = point.getTarget().getClass().getAnnotation(TargetDataSource.class);
@@ -30,10 +36,17 @@ public class DynamicDataSourceAspect {
             return;
         }
         int dsType = ds.type();
-        String dsId = "defaultDataSource";
+        // 判断当前使用的数据源类型是否一致
+        // 如果一致则不进行 切换数据源操作
+//        Integer currentDataSourceType = DataSourceTypeThreadLocal.getCurrentDataSourceType();
+//        if(currentDataSourceType!=null&&currentDataSourceType==dsType){
+//            return;
+//        }
+//        DataSourceTypeThreadLocal.setCurrentDataSourceType(dsType);
+        String dsId = DataSourceKeyConst.defaultDataSource;
         if(dsType==DataSourceTypeConst.SlaverDataSource)
         {
-            dsId = DataSourceMap.getDataSourceKeyRandom();
+            dsId = SlaverDataSourceMap.getDataSourceKeyRandom();
         }
 //        String dsId = ds.value();
         System.out.println(dsId);
