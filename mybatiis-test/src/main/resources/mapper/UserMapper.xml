@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.huwei.dao.IUserDao" >
-    <resultMap id="BaseResultMap" type="com.hw.mutil.datasource.model.User" >
+<mapper namespace="com.hw.mybatis.test.dao.IUserDao" >
+    <resultMap id="BaseResultMap" type="com.hw.mybatis.test.model.User" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="username" property="username" jdbcType="VARCHAR" />
     </resultMap>
 
-    <insert id="insert" parameterType="com.hw.mutil.datasource.model.User" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.hw.mybatis.test.model.User" useGeneratedKeys="true" keyProperty="id">
         insert into user (username) values(#{username})
     </insert>
 
-    <update id="updateUser"  parameterType="com.hw.mutil.datasource.model.User">
+    <update id="updateUser"  parameterType="com.hw.mybatis.test.model.User">
         update user set username=#{username}
-        where id=#{id}
+        where username=#{username}
     </update>
 </mapper>

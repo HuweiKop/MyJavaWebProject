@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  */
 @Aspect
 @Order(-1)// 保证该AOP在@Transactional之前执行
-@Component
+//@Component
 public class DynamicDataSourceDaoAspect {
     /**
      * 对dao层 进行切面数据源 配置

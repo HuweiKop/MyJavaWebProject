@@ -40,7 +40,7 @@ public class AppTest {
 //        service1.getUser(11);
 //        service2.getUser(11);
 //        service3.getUser(11);
-        masterService.getUser(1);
+//        masterService.test("xxx");
         masterService.getUser(1);
 //        DynamicDataSourceContextHolder.setDataSourceType("testDataSource2");
     }

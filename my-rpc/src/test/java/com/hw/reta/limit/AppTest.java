@@ -1,4 +1,4 @@
-package com.myproject;
+package com.hw.reta.limit;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

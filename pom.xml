@@ -26,6 +26,7 @@
       <module>mutil-datasource</module>
     <module>springboot</module>
       <module>sharding-jdbc</module>
+      <module>retalimit</module>
   </modules>
   <packaging>pom</packaging>
 

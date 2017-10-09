@@ -23,4 +23,8 @@ public class Service1 {
         System.out.println("service1======="+user.getUsername());
         return user;
     }
+
+    public int updateUser(User user){
+        return userDao.updateUser(user);
+    }
 }

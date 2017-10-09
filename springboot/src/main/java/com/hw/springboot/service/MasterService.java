@@ -10,13 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Created by huwei on 2017/7/3.
  */
-@Service("masterService")
-public class MasterService {
+@Service
+public class MasterService extends BaseService {
 
     @Autowired
     private IUserDao userDao;
 
-    @Transactional
+//    @Transactional
     public User insertUser(String username){
         User user = new User();
         user.setUsername(username);
@@ -25,6 +25,9 @@ public class MasterService {
         User newUser = userDao.getUser(user.getId());
         System.out.println(newUser.getId());
         System.out.println(newUser.getUsername());
+        if(newUser!=null){
+            throw new RuntimeException("xxxx");
+        }
         return newUser;
     }
 
