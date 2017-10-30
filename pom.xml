@@ -27,6 +27,8 @@
     <module>springboot</module>
       <module>sharding-jdbc</module>
       <module>retalimit</module>
+    <module>disruptor-test</module>
+    <module>cache-helper</module>
   </modules>
   <packaging>pom</packaging>
 
