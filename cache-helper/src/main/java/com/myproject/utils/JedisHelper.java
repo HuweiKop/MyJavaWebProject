@@ -51,6 +51,12 @@ public class JedisHelper {
         }
     }
 
+    public int del(String key){
+        Jedis jedis = pool.getResource();
+        jedis.del(key);
+        return 0;
+    }
+
     public int set(String key, String value){
         Jedis jedis = pool.getResource();
         jedis.set(key,value);

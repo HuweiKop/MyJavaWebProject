@@ -20,6 +20,7 @@ public class AppTest extends BaseTest {
     @Test
     public void test() {
         List<UserDO> result = service1.getUser("xxx");
+        service1.updateUser("xxx");
         result = service1.getUser("sss");
     }
 }

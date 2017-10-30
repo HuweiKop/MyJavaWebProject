@@ -2,6 +2,7 @@ package com.myproject.cache;
 
 import com.alibaba.fastjson.JSON;
 import com.myproject.annotation.Cache;
+import com.myproject.annotation.CacheDelete;
 import com.myproject.annotation.CacheKey;
 import com.myproject.constant.SymbolConst;
 import com.myproject.utils.JedisHelper;
@@ -22,7 +23,10 @@ public class RedisCache implements ICache {
 
     @Override
     public Object getResult(Cache cache, ProceedingJoinPoint jp) throws Throwable {
-        String key = getCacheKey(cache, jp);
+        String key = cache.key();
+        if(cache.isCacheKey()){
+            key = getCacheKey(key, jp);
+        }
 
         Object result = getCacheData(cache, key);
         if (result == null) {
@@ -30,6 +34,16 @@ public class RedisCache implements ICache {
             saveCacheData(cache, key, result);
         }
         return result;
+    }
+
+    @Override
+    public boolean deleteCache(CacheDelete cacheDelete, ProceedingJoinPoint jp) throws Throwable {
+        String key = cacheDelete.key();
+        if(cacheDelete.isCacheKey()){
+            key = getCacheKey(cacheDelete.key(), jp);
+        }
+        JedisHelper.getInstance().del(key);
+        return true;
     }
 
     @Override
@@ -54,17 +68,13 @@ public class RedisCache implements ICache {
         return data;
     }
 
-    @Override
-    public String getCacheKey(Cache cache, ProceedingJoinPoint jp) {
-        if(!cache.isCacheKey()){
-            return cache.key();
-        }
+    private String getCacheKey(String key, ProceedingJoinPoint jp) {
         MethodSignature methodSignature = (MethodSignature) jp.getSignature();
         Method method = methodSignature.getMethod();
         Parameter[] params = method.getParameters();
         Object[] args = jp.getArgs();
 
-        StringBuilder sb = new StringBuilder(cache.key());
+        StringBuilder sb = new StringBuilder(key);
 
         for(int i=0;i<params.length;i++){
             if(params[i].isAnnotationPresent(CacheKey.class)){
