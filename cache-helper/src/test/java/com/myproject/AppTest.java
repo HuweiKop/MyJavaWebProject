@@ -20,7 +20,6 @@ public class AppTest extends BaseTest {
     @Test
     public void test() {
         List<UserDO> result = service1.getUser("xxx");
-        CacheFactory.registerCache(new RedisCache());
-        result = service1.getUser("xxx");
+        result = service1.getUser("sss");
     }
 }

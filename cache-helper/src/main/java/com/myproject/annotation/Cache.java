@@ -16,4 +16,6 @@ public @interface Cache {
     String key() default "";
 
     int expireTime() default 0;
+
+    boolean isCacheKey() default false;
 }
