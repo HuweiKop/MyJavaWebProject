@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class TestService {
 
-    @Cache(key = "user", expireTime = 0, isCacheKey = false)
+    @Cache(key = "user", expireTime = 100, isCacheKey = true)
     public List<UserDO> getUser(@CacheKey String name){
         List<UserDO> list = new ArrayList<>(5);
         for(int i=0;i<5;i++){

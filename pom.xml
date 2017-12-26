@@ -29,6 +29,9 @@
       <module>retalimit</module>
     <module>disruptor-test</module>
     <module>cache-helper</module>
+      <module>redisson</module>
+    <module>spring-test</module>
+    <module>netty-test</module>
   </modules>
   <packaging>pom</packaging>
 

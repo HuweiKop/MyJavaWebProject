@@ -1,7 +1,5 @@
 package com.myproject;
 
-import com.myproject.cache.CacheFactory;
-import com.myproject.cache.RedisCache;
 import com.myproject.example.TestService;
 import com.myproject.example.UserDO;
 import org.junit.Test;
@@ -20,7 +18,7 @@ public class AppTest extends BaseTest {
     @Test
     public void test() {
         List<UserDO> result = service1.getUser("xxx");
-        service1.updateUser("xxx");
-        result = service1.getUser("sss");
+//        service1.updateUser("xxx");
+        result = service1.getUser("xxx");
     }
 }

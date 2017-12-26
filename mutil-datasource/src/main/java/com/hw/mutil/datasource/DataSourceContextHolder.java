@@ -14,7 +14,6 @@ public class DataSourceContextHolder {
      * @throws
      */
     public static void setDataSourceType(String dataSourceType) {
-        System.err.println(dataSourceType);
         contextHolder.set(dataSourceType);
     }
 
