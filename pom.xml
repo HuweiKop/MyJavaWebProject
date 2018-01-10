@@ -32,6 +32,8 @@
       <module>redisson</module>
     <module>spring-test</module>
     <module>netty-test</module>
+      <module>captcha</module>
+      <module>my-spring-cloud</module>
   </modules>
   <packaging>pom</packaging>
 
