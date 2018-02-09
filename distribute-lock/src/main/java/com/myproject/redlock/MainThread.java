@@ -16,6 +16,13 @@ public class MainThread {
 
     public static  void main(String[] args){
 //        test3();
+        System.out.println("xxxx");
+        String s2 = "didi java";
+        String s1 = new String("didi java").intern();
+
+        System.out.println("s1 == s2: " + (s1 == s2)); // 同一个
+        System.out.println("s1.equals(s2): " + s1.equals(s2)); // 相等
+
     }
 
     private static void test1(){
